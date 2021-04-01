@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {FirebaseService} from './firebase.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FirebaseService } from './firebase.service';
+import { CommitInterface } from '../models/commit.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class GithubService {
               private firebaseService: FirebaseService) {
   }
 
-  async getCommitHistory() {
+  async getCommitHistory(): Promise<CommitInterface[] | any> {
     const owner = await this.firebaseService.fetch('github_owner');
     const repo = await this.firebaseService.fetch('github_repo');
     const headers = new HttpHeaders({Accept: 'application/vnd.github.v3+json'});

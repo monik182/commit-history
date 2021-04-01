@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GithubService } from './github.service';
+import { GithubService } from './services/github.service';
+import { CommitInterface } from './models/commit.interface';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { GithubService } from './github.service';
 })
 export class AppComponent implements OnInit {
   title = 'Commit History';
-
+  commits: CommitInterface[];
   constructor(private githubService: GithubService) {
   }
 
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   async getCommitHistory() {
-    const response = await this.githubService.getCommitHistory();
-    console.log('GITHUB RESPONSE', {response});
+    this.commits = await this.githubService.getCommitHistory();
+    console.log('GITHUB RESPONSE', {commits: this.commits});
   }
 }

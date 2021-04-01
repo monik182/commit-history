@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import firebase from 'firebase/app';
-import { firebaseConfig } from '../firebase-config';
+import { firebaseConfig } from '../../firebase-config';
 import 'firebase/remote-config';
 
 @Injectable({
