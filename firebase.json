@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/commit-history",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
