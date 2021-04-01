@@ -1,3 +1,33 @@
-<section class="grid">
-<h1>{{title}}</h1>
-</section>
+<article class="h-screen p-8 bg-gray-900 text-gray-100">
+<h1 class="flex justify-center text-3xl p-6 font-bold text-green-300">{{title}}</h1>
+
+  <section *ngIf="commits?.length; else loading" class="commits-list grid grid-cols-2 justify-items-center gap-6">
+
+    <section class="commit border p-2 rounded-md border-green-200 hover:bg-gray-700 w-11/12 cursor-pointer" *ngFor="let commit of commits">
+      <div class="info">
+        <p>
+          <span class="font-bold text-green-400">SHA: </span>
+          <a [href]="commit.url" target="_blank" class="hover:text-green-500">{{commit.sha}}</a>
+        </p>
+        <p>
+          <span class="font-bold text-green-400">Message: </span>
+          {{commit.commit.message}}
+        </p>
+        <p>
+          <span class="font-bold text-green-400">Date: </span>
+          {{commit.commit.author.date | date: 'dd/MM/yyyy hh:mm:ss a'}}
+        </p>
+      </div>
+      <div class="author">
+        <span class="font-bold text-green-400">Author: </span>
+        <a [href]="'mailto:' + commit.commit.author.email" target="_blank" class="hover:text-green-500">{{commit.commit.author.name}}</a>
+      </div>
+    </section>
+
+  </section>
+
+  <ng-template #loading>
+    <img class="animate-spin w-24 m-auto mt-40" src="assets/loading.svg" alt="Loading">
+  </ng-template>
+
+</article>

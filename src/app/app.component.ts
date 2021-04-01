@@ -19,6 +19,5 @@ export class AppComponent implements OnInit {
 
   async getCommitHistory() {
     this.commits = await this.githubService.getCommitHistory();
-    console.log('GITHUB RESPONSE', {commits: this.commits});
   }
 }
